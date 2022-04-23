@@ -17,3 +17,23 @@ h3{
     margin-right: auto;
 	text-align: center;
 }
+
+.button{
+	font-weight: bold;
+	border-color: black;
+	text-align: center;
+	width: 70%;
+	background-color:#848482;
+  	text-decoration: none;
+  	display: inline-block;
+  	color: black;
+  	padding: 20px 30px;
+	margin-left: 8%;
+	margin-top: 6%;
+	border-radius: 10px;
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	background-size: 200% auto;
+	transition: .5s;
+}
