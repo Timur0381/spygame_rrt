@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src="game.js"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="game.css">
@@ -11,6 +10,98 @@
 	<title>Game</title>
 </head>
 <body>
-	
+	<h2 id="spy"> </h2>
+	<div>
+		<button id="but" onclick="f1()">Начать</button>
+	</div>
+
+
+	<script>
+		var count_of_locats = 29;
+
+		function getRandomInt(min, max) {
+		  min = Math.ceil(min);
+		  max = Math.floor(max);
+		  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+		}
+
+		function contains(arr, elem) {
+   			return arr.indexOf(elem) != -1;
+		}
+
+		function sleep(milliseconds) {       
+		    const date = Date.now();        
+		    let currentDate = null;       
+		    do {               
+		       currentDate = Date.now();      
+		    } while (currentDate - date < milliseconds); 
+		}
+
+		var count_of_players = prompt("Введите количество игроков", '');
+
+		if (count_of_players <= 8){
+			count_of_spies = 1;
+		}
+		else{
+			count_of_spies = 2;
+		}
+
+
+		var locations = ['Ресторан', 'Спа-салон', 'Отель', 'Университет', 'Банк', 'Больница', 'Посольство', 'Киностудия', 'Цирк-шапито', 'Театр', 'Церковь', 'Овощебаза', 'Супермаркет', 'Полицейский участок', 'Корпоративная вечеринка', 'Океанский лайнер', 'Подводная лодка', 'Станция техобслуживания', 'Полярная станция', 'Пляж', 'Воинская часть', 'Войско крестоносцев', 'Пассажирский поезд', 'Школа', 'Партизанский отряд', 'Казино', 'Пиратский корабль', 'Орбитальная станция', 'Самолёт'];
+
+		var random_number = getRandomInt(0, 28);
+		var random_location = locations[random_number];
+		var spies_ids = [];
+		var people = [];
+
+		for (var i=0; i<count_of_players; i++){
+			people.push(i);
+		}
+
+
+		for (var i=0; i<count_of_spies; i++){
+			var spy = getRandomInt(people[0], people[people.length-1]);
+			delete people[spy];
+			spies_ids.push(spy);
+		}
+
+
+		var to_show = [];
+
+		for (var i=0; i<count_of_players; i++){
+			if (contains(spies_ids, i)){
+				to_show.push("Ты шпион");
+			}
+			else{
+				to_show.push(random_location);
+			}
+		}
+		var h2 = document.getElementById('spy');
+		var but = document.getElementById('but');
+		var i = 0;
+		function f1() {
+			h2.innerHTML = "...";
+			setTimeout('f2()',2000)
+		}
+
+		function f2(){
+			if (i < count_of_players-1){
+				but.innerHTML = "Передать телефон";
+
+		    	h2.innerHTML = to_show[i++];
+
+			}
+			else{
+				but.innerHTML = "Передать телефон";
+				h2.innerHTML = "ИГРА";
+				but.remove();
+			}
+		    
+		 }
+
+	</script>
+
+
+
 </body>
 </html>
