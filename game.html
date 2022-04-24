@@ -10,21 +10,14 @@
 	<title>Game</title>
 </head>
 <body>
-	<script>
-		function sleep(milliseconds) {       
-		    const date = Date.now();        
-		    let currentDate = null;       
-		    do {               
-		       currentDate = Date.now();      
-		    } while (currentDate - date < milliseconds); 
-		}
 
-		sleep(1000);
+	<h2 id="title-send-form">Введите количество игроков</h2>
 
-		var count_of_players = prompt("Введите количество игроков", '');
-		alert('pls');
-	</script>
-
+	<div id="send-form">
+		<input type="text" id="players">
+		<button id="send" style="margin-left: 1%;" onclick="get_count_of_players()">Подтвердить</button>
+	</div>
+	
 	<h2 id="spy"> </h2>
 	<div>
 		<button id="but" class="button_game" onclick="f1()">Начать</button>
@@ -35,88 +28,109 @@
 		<button class="button_game" id="back_but" onclick="document.location='index.html'">Назад</button>		
 	</div>
 
-	<script>
-		var count_of_locats = 29;
-
-		function getRandomInt(min, max) {
-		  min = Math.ceil(min);
-		  max = Math.floor(max);
-		  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
-		}
-
-		function contains(arr, elem) {
-   			return arr.indexOf(elem) != -1;
-		}
 
 
 
-		
+<script>
 
+var count_of_players = 0;
+var k = 0;
+function get_count_of_players(){
+	var str_count = document.getElementById("players").value;
+	count_of_players = Number(str_count);
+	document.getElementById("send-form").remove();
+}
+
+
+
+function sleep(milliseconds) {       
+    const date = Date.now();        
+    let currentDate = null;       
+    do {               
+       currentDate = Date.now();      
+    } while (currentDate - date < milliseconds); 
+}
+
+var count_of_locats = 29;
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+}
+
+function contains(arr, elem) {
+		return arr.indexOf(elem) != -1;
+}
+var to_show = [];
+
+
+var h2 = document.getElementById('spy');
+var but = document.getElementById('but');
+var i = 0;
+function f1() {
+	k++;
+	if (k==1){
 		if (count_of_players <= 8){
-			count_of_spies = 1;
-		}
-		else{
-			count_of_spies = 2;
-		}
+	count_of_spies = 1;
+}
+else{
+	count_of_spies = 2;
+}
 
 
-		var locations = ['Ресторан', 'Спа-салон', 'Отель', 'Университет', 'Банк', 'Больница', 'Посольство', 'Киностудия', 'Цирк-шапито', 'Театр', 'Церковь', 'Овощебаза', 'Супермаркет', 'Полицейский участок', 'Корпоративная вечеринка', 'Океанский лайнер', 'Подводная лодка', 'Станция техобслуживания', 'Полярная станция', 'Пляж', 'Воинская часть', 'Войско крестоносцев', 'Пассажирский поезд', 'Школа', 'Партизанский отряд', 'Казино', 'Пиратский корабль', 'Орбитальная станция', 'Самолёт'];
+var locations = ['Ресторан', 'Спа-салон', 'Отель', 'Университет', 'Банк', 'Больница', 'Посольство', 'Киностудия', 'Цирк-шапито', 'Театр', 'Церковь', 'Овощебаза', 'Супермаркет', 'Полицейский участок', 'Корпоративная вечеринка', 'Океанский лайнер', 'Подводная лодка', 'Станция техобслуживания', 'Полярная станция', 'Пляж', 'Воинская часть', 'Войско крестоносцев', 'Пассажирский поезд', 'Школа', 'Партизанский отряд', 'Казино', 'Пиратский корабль', 'Орбитальная станция', 'Самолёт'];
 
-		var random_number = getRandomInt(0, 28);
-		var random_location = locations[random_number];
-		var spies_ids = [];
-		var people = [];
+var random_number = getRandomInt(0, 28);
+var random_location = locations[random_number];
+var spies_ids = [];
+var people = [];
 
-		for (var i=0; i<count_of_players; i++){
-			people.push(i);
-		}
-
-
-		for (var i=0; i<count_of_spies; i++){
-			var spy = getRandomInt(people[0], people[people.length-1]);
-			delete people[spy];
-			spies_ids.push(spy);
-		}
+for (var i=0; i<count_of_players; i++){
+	people.push(i);
+}
 
 
-		var to_show = [];
+for (var i=0; i<count_of_spies; i++){
+	var spy = getRandomInt(people[0], people[people.length-1]);
+	delete people[spy];
+	spies_ids.push(spy);
+}
 
-		for (var i=0; i<count_of_players; i++){
-			if (contains(spies_ids, i)){
-				to_show.push("Ты шпион");
-			}
-			else{
-				to_show.push(random_location);
-			}
-		}
-		var h2 = document.getElementById('spy');
-		var but = document.getElementById('but');
-		var i = 0;
-		function f1() {
-			h2.innerHTML = "...";
-			setTimeout('f2()',2000)
-		}
 
-		function f2(){
-			if (i < count_of_players-1){
-				but.innerHTML = "Передать телефон";
 
-		    	h2.innerHTML = to_show[i++];
 
-			}
-			else if (i == count_of_players-1){
-				but.innerHTML = "Начать";
-				h2.innerHTML = to_show[i++];
-			}
-			else{
-				h2.innerHTML = "ИГРА";
-				but.remove();
-			}
-		    
-		 }
+for (var i=0; i<count_of_players; i++){
+	if (contains(spies_ids, i)){
+		to_show.push("Шпион");
+	}
+	else{
+		to_show.push(random_location);
+	}
+}
+	}
+	h2.innerHTML = "...";
+	setTimeout('f2(count_of_players, to_show)',2000)
+}
 
+function f2(count_of_players, to_show){
+	if (i < count_of_players-1){
+		but.innerHTML = "Передать телефон";
+
+    	h2.innerHTML = to_show[i++];
+
+	}
+	else if (i == count_of_players-1){
+		but.innerHTML = "Начать";
+		h2.innerHTML = to_show[i++];
+	}
+	else{
+		h2.innerHTML = "ИГРА";
+		but.remove();
+	}
+    
+ }
 	</script>
-
 
 
 </body>
