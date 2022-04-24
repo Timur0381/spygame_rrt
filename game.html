@@ -10,6 +10,10 @@
 	<title>Game</title>
 </head>
 <body>
+	<script>
+		var count_of_players = prompt("Введите количество игроков", '');
+	</script>
+
 	<h2 id="spy"> </h2>
 	<div>
 		<button id="but" class="button_game" onclick="f1()">Начать</button>
@@ -41,7 +45,7 @@
 		    } while (currentDate - date < milliseconds); 
 		}
 
-		var count_of_players = prompt("Введите количество игроков", '');
+		
 
 		if (count_of_players <= 8){
 			count_of_spies = 1;
