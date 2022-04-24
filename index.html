@@ -11,48 +11,9 @@
 	<title>SPY RRT</title>
 </head>
 <body>
-	<h3>Список локаций</h3>
-	<ul>
-		<li>Ресторан</li>
-		<li>Спа-салон</li>
-		<li>Отель</li>
-		<li>Университет</li>
-		<li>Банк</li>
-		<li>Больница</li>
-		<li>Посольство</li>
-		<li>Киностудия</li>
-		<li>Цирк-шапито</li>
-		<li>Театр</li>
-		<li>Церковь</li>
-		<li>Овощебаза</li>
-		<li>Супермаркет</li>
-		<li>Полицейский участок</li>
-		<li>Корпоративная вечеринка</li>
-		<li>Океанский лайнер</li>
-		<li>Подводная лодка</li>
-		<li>Станция техобслуживания</li>
-		<li>Полярная станция</li>
-		<li>Пляж</li>
-		<li>Воинская часть</li>
-		<li>Войско крестоносцев</li>
-		<li>Пассажирский поезд</li>
-		<li>Школа</li>
-		<li>Партизанский отряд</li>
-		<li>Казино</li>
-		<li>Пиратский корабль</li>
-		<li>Орбитальная станция</li>
-		<li>Самолёт</li>
-	</ul>
-
-	<div>
-		<button class="button" onclick="document.location='game.html'">НАЧАТЬ ИГРУ</button>
-	</div>
-
-	
 
 
-
-<script>
+	<script>
    (function(window) {
   var FUNCTION = 'function';
   var UNDEFINED = 'undefined';
@@ -64,7 +25,6 @@
 
   if (typeof window !== UNDEFINED) {
 
-    //polyfill
     if (!window.CustomEvent) {
       (function() {
         function CustomEvent(event, params) {
@@ -108,16 +68,7 @@
   }
 
   window.connect = {
-    /**
-     * Sends a message to native client
-     *
-     * @example
-     * message.send('VKWebAppInit');
-     *
-     * @param {String} handler Message type
-     * @param {Object} params Message data
-     * @returns {void}
-     */
+
     send: function send(handler, params) {
       if (!params) {
         params = {};
@@ -145,21 +96,11 @@
         }, '*');
       }
     },
-    /**
-     * Subscribe on VKWebAppEvent
-     *
-     * @param {Function} fn Event handler
-     * @returns {void}
-     */
+
     subscribe: function subscribe(fn) {
       subscribers.push(fn);
     },
-    /**
-     * Unsubscribe on VKWebAppEvent
-     *
-     * @param {Function} fn Event handler
-     * @returns {void}
-     */
+
     unsubscribe: function unsubscribe(fn) {
       var index = subscribers.indexOf(fn);
 
@@ -168,12 +109,6 @@
       }
     },
 
-    /**
-     * Checks if native client supports nandler
-     *
-     * @param {String} handler Handler name
-     * @returns {boolean}
-     */
     supports: function supports(handler) {
 
       var isClient = typeof window !== UNDEFINED;
@@ -216,6 +151,45 @@
 })(window);
 
 connect.send('VKWebAppInit', {});
+
 </script>
+
+	<h3>Список локаций</h3>
+	<ul>
+		<li>Ресторан</li>
+		<li>Спа-салон</li>
+		<li>Отель</li>
+		<li>Университет</li>
+		<li>Банк</li>
+		<li>Больница</li>
+		<li>Посольство</li>
+		<li>Киностудия</li>
+		<li>Цирк-шапито</li>
+		<li>Театр</li>
+		<li>Церковь</li>
+		<li>Овощебаза</li>
+		<li>Супермаркет</li>
+		<li>Полицейский участок</li>
+		<li>Корпоративная вечеринка</li>
+		<li>Океанский лайнер</li>
+		<li>Подводная лодка</li>
+		<li>Станция техобслуживания</li>
+		<li>Полярная станция</li>
+		<li>Пляж</li>
+		<li>Воинская часть</li>
+		<li>Войско крестоносцев</li>
+		<li>Пассажирский поезд</li>
+		<li>Школа</li>
+		<li>Партизанский отряд</li>
+		<li>Казино</li>
+		<li>Пиратский корабль</li>
+		<li>Орбитальная станция</li>
+		<li>Самолёт</li>
+	</ul>
+
+	<div>
+		<button class="button" onclick="document.location='game.html'">НАЧАТЬ ИГРУ</button>
+	</div>
+
 </body>
 </html>
