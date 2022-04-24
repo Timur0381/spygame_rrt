@@ -14,24 +14,30 @@ div {
   display: flex;
   justify-content: center;
   word-wrap: break-word;
+
+
 }
 
 
-button{
-	margin-top: 30%;
-	font-weight: bold;
-	font-size: 30px;
+.button_game{
 	border-color: black;
+  	border-radius: 10px;
+	margin-top: 30%;
+	font-size: 20px;
+	font-weight: bold;
 	text-align: center;
-	width: 40%;
+	width: 70%;
 	background-color:#848482;
   	text-decoration: none;
   	display: inline-block;
   	color: black;
-	border-radius: 10px;
 	font-family: 'Montserrat', sans-serif;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	background-size: 200% auto;
 	transition: .5s;
+}
+
+#back_but{
+	margin-top: 3%;
 }
