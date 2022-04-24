@@ -11,7 +11,18 @@
 </head>
 <body>
 	<script>
+		function sleep(milliseconds) {       
+		    const date = Date.now();        
+		    let currentDate = null;       
+		    do {               
+		       currentDate = Date.now();      
+		    } while (currentDate - date < milliseconds); 
+		}
+
+		sleep(1000);
+
 		var count_of_players = prompt("Введите количество игроков", '');
+		alert('pls');
 	</script>
 
 	<h2 id="spy"> </h2>
@@ -37,13 +48,7 @@
    			return arr.indexOf(elem) != -1;
 		}
 
-		function sleep(milliseconds) {       
-		    const date = Date.now();        
-		    let currentDate = null;       
-		    do {               
-		       currentDate = Date.now();      
-		    } while (currentDate - date < milliseconds); 
-		}
+
 
 		
 
@@ -93,14 +98,17 @@
 		}
 
 		function f2(){
-			if (i <= count_of_players-1){
+			if (i < count_of_players-1){
 				but.innerHTML = "Передать телефон";
 
 		    	h2.innerHTML = to_show[i++];
 
 			}
+			else if (i == count_of_players-1){
+				but.innerHTML = "Начать";
+				h2.innerHTML = to_show[i++];
+			}
 			else{
-				but.innerHTML = "Передать телефон";
 				h2.innerHTML = "ИГРА";
 				but.remove();
 			}
