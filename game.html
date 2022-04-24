@@ -28,10 +28,20 @@
 		<button class="button_game" id="back_but" onclick="document.location='index.html'">Назад</button>		
 	</div>
 
+	<div class="container">
+    <p id="timer">
+        <span id="timer-mins"></span>
+        <span id="timer-secs"></span>
+    </p>
+	</div>
+
 
 
 
 <script>
+
+
+
 
 var count_of_players = 0;
 var k = 0;
@@ -42,6 +52,27 @@ function get_count_of_players(){
 	document.getElementById("title-send-form").remove();
 }
 
+
+let timerShow = document.getElementById("timer");
+
+
+function time_func(count_of_players){
+			timeMinut = count_of_players;
+			alert(timeMinut);
+			seconds = timeMinut%60; // Получаем секунды
+		    minutes = timeMinut/60%60; // Получаем минуты
+		    if (timeMinut <= 0) {
+		        // Таймер удаляется
+		        clearInterval(timer);
+		        // Выводит сообщение что время закончилось
+		        alert("Время закончилось");
+		    } else { // Иначе
+		        // Создаём строку с выводом времени
+		        let strTimer = `${Math.trunc(minutes)}:${seconds}`;
+		        // Выводим строку в блок для показа таймера
+		        timerShow.innerHTML = strTimer;
+		    }
+		}
 
 
 function sleep(milliseconds) {       
@@ -86,7 +117,6 @@ var random_number = getRandomInt(0, 28);
 var random_location = locations[random_number];
 var spies_ids = [];
 var people = [];
-
 for (var i=0; i<count_of_players; i++){
 	people.push(i);
 }
@@ -128,6 +158,30 @@ function f2(count_of_players, to_show){
 	else{
 		h2.innerHTML = "ИГРА";
 		but.remove();
+		var endDate = new Date().getTime()+count_of_players*60*1000;
+		var timer = setInterval(function() {
+    	let now = new Date().getTime();
+    		let t = endDate - now;
+    
+    if (t >= 0) {
+    
+        let mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        let secs = Math.floor((t % (1000 * 60)) / 1000);
+    
+        
+        document.getElementById("timer-mins").innerHTML = ("0"+mins).slice(-2) +
+        "<span class='label'>MIN(S)</span>";
+    
+        document.getElementById("timer-secs").innerHTML = ("0"+secs).slice(-2) +
+        "<span class='label'>SEC(S)</span>";
+    
+    } else {
+        document.getElementById("timer").innerHTML = "Конец игры";
+				
+    }
+    
+}, 1000);
+				
 	}
     
  }
